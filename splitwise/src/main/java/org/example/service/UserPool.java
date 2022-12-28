@@ -14,6 +14,10 @@ public class UserPool {
     public UserPool() {
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
     public User getUserById(String id) {
         return userIdAndUserMap.get(id);
     }

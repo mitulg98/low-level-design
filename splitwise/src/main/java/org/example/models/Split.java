@@ -3,29 +3,18 @@ package org.example.models;
 import java.util.List;
 
 public abstract class Split {
-    private User payer;
-    private List<User> consumers;
+    private User user;
     private Double amount;
-    public Split(User payer, List<User> consumers, Double amount) {
-        this.payer = payer;
-        this.consumers = consumers;
-        this.amount = amount;
+    public Split(User user) {
+        this.user = user;
     }
 
-    public User getPayer() {
-        return payer;
+    public User getUser() {
+        return user;
     }
 
-    public void setPayer(User payer) {
-        this.payer = payer;
-    }
-
-    public List<User> getConsumers() {
-        return consumers;
-    }
-
-    public void setConsumers(List<User> consumers) {
-        this.consumers = consumers;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Double getAmount() {

@@ -7,27 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EqualExpense extends Expense {
-    public EqualExpense(ExpenseMetadata expenseMetadata, Split split) {
-        super(ExpenseType.EQUAL, expenseMetadata, split);
-    }
-
-    @Override
-    public List<Double> getConsumerShare() {
-        EqualSplit equalSplit = (EqualSplit) this.getSplit();
-        int numberOfConsumers = equalSplit.getConsumers().size();
-        double amount = equalSplit.getAmount();
-
-        List<Double> consumerShare = new ArrayList<>();
-
-        for(int i = 0; i < numberOfConsumers; i++) {
-            consumerShare.add(amount / numberOfConsumers);
-        }
-
-        return consumerShare;
+    public EqualExpense(ExpenseMetadata expenseMetadata, List<Split> splits, Double amount, User payer) {
+        super(expenseMetadata, splits, amount, payer);
     }
 
     @Override
     public Boolean isExpenseValid() {
-        return Boolean.TRUE;
+        for(Split split: getSplits()) {
+            if(!(split instanceof EqualSplit)) {
+                return false;
+            }
+        }
+
+        return true;
     }
 }

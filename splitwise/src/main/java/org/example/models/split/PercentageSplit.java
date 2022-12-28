@@ -6,18 +6,18 @@ import org.example.models.User;
 import java.util.List;
 
 public class PercentageSplit extends Split {
-    private List<Double> percentageDistribution;
+    private Double percentage;
 
-    public PercentageSplit(User payer, List<User> consumers, Double amount, List<Double> percentageDistribution) {
-        super(payer, consumers, amount);
-        this.percentageDistribution = percentageDistribution;
+    public PercentageSplit(User user, Double percentage) {
+        super(user);
+        this.percentage = percentage;
     }
 
-    public List<Double> getPercentageDistribution() {
-        return percentageDistribution;
+    public Double getPercentage() {
+        return percentage;
     }
 
-    public void setPercentageDistribution(List<Double> percentageDistribution) {
-        this.percentageDistribution = percentageDistribution;
+    public void setPercentage(Double percentage) {
+        this.percentage = percentage;
     }
 }
