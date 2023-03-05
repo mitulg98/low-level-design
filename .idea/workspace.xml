@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="95357509-5e69-48d9-8584-59111e1138d7" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/splitwise/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/splitwise/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitwise/.gradle/buildOutputCleanup/cache.properties" beforeDir="false" afterPath="$PROJECT_DIR$/splitwise/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitwise/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitwise/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/splitwise/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitwise/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/splitwise/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitwise/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/splitwise/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitwise/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/splitwise/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/splitwise/src/main/java/org/example/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/splitwise/src/main/java/org/example/Main.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2MYGTDovcQKN6XYMF9nfZCdukiZ" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "last_opened_file_path": "/Users/mitulgupta/Arena/low-level-design"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="95357509-5e69-48d9-8584-59111e1138d7" name="Changes" comment="" />
+      <created>1677937107897</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1677937107897</updated>
+    </task>
+    <servers />
+  </component>
+</project>

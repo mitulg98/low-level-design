@@ -1,11 +1,7 @@
 package org.example;
 
-import org.example.models.Expense;
 import org.example.models.ExpenseType;
-import org.example.models.Split;
-import org.example.models.split.EqualSplit;
 import org.example.service.ExpenseManager;
-import org.example.service.UserPool;
 
 import java.util.ArrayList;
 import java.util.List;
