@@ -1,7 +1,7 @@
 package org.example;
 
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
+import org.testng.annotations.Test;
 
 class SolverTest {
     @Test
