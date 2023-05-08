@@ -1,33 +1,62 @@
+package org.example;
+
 import java.io.*;
-import java.util.*;
+import java.util.Objects;
+import java.util.StringTokenizer;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Scanner reader = new Scanner(System.in);
-        PrintWriter writer = new PrintWriter(System.out);
-
+        FastReader reader = new FastReader();
         int n = reader.nextInt();
-        int prev = -1;
-        int answer = 0;
+
+        double arr[] = new double[n];
 
         for(int i = 0; i < n; i++) {
-            int cur = reader.nextInt();
-
-            if(cur == 0 || (cur != 3 && cur == prev)) {
-                answer++;
-                prev = 0;
-                continue;
-            }
-
-            if(prev > 0 && prev < 3 && cur == 3) {
-                prev = 3 - prev;
-            } else {
-                prev = cur;
-            }
+            arr[i] = reader.nextDouble();
         }
 
-        writer.println(answer);
-        writer.close();
-        reader.close();
+        for(int i = 0; i < n; i++) {
+            System.out.println(arr[i]);
+        }
+    }
+}
+
+class Solver {
+    public static int solve() {
+        return 0;
+    }
+}
+
+class FastReader {
+    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private StringTokenizer tokenizer;
+
+    public String next() throws IOException {
+        if(Objects.isNull(tokenizer) || !tokenizer.hasMoreTokens()) {
+            tokenizer = new StringTokenizer(reader.readLine());
+        }
+        return tokenizer.nextToken();
+    }
+
+    public int nextInt() throws IOException {
+        return Integer.parseInt(next());
+    }
+
+    public long nextLong() throws IOException {
+        return Long.parseLong(next());
+    }
+
+    public double nextDouble() throws IOException {
+        return Double.parseDouble(next());
+    }
+
+    public String nextLine() throws IOException {
+        String line = "";
+        if(tokenizer.hasMoreTokens()) {
+            line = tokenizer.nextToken("\n");
+        } else {
+            line = reader.readLine();
+        }
+        return line;
     }
 }
