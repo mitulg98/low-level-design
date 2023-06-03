@@ -1,62 +1,69 @@
 package org.example;
 
-import java.io.*;
-import java.util.Objects;
-import java.util.StringTokenizer;
+class MRUQueue {
+    private static final int N = 4002;
+    private int [] BIT;
+    private int [] arr;
+    private int n;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        FastReader reader = new FastReader();
-        int n = reader.nextInt();
-
-        double arr[] = new double[n];
-
-        for(int i = 0; i < n; i++) {
-            arr[i] = reader.nextDouble();
-        }
+    public MRUQueue(int n) {
+        this.n = n;
+        BIT = new int[N];
+        arr = new int[N];
 
         for(int i = 0; i < n; i++) {
-            System.out.println(arr[i]);
+            arr[i + 1] = i + 1;
+            update(i + 1, 1);
         }
     }
-}
 
-class Solver {
-    public static int solve() {
-        return 0;
-    }
-}
-
-class FastReader {
-    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-    private StringTokenizer tokenizer;
-
-    public String next() throws IOException {
-        if(Objects.isNull(tokenizer) || !tokenizer.hasMoreTokens()) {
-            tokenizer = new StringTokenizer(reader.readLine());
+    private void update(int x, int change) {
+        for(; x < N; x += (x&(-x))) {
+            BIT[x] += change;
         }
-        return tokenizer.nextToken();
     }
 
-    public int nextInt() throws IOException {
-        return Integer.parseInt(next());
-    }
-
-    public long nextLong() throws IOException {
-        return Long.parseLong(next());
-    }
-
-    public double nextDouble() throws IOException {
-        return Double.parseDouble(next());
-    }
-
-    public String nextLine() throws IOException {
-        String line = "";
-        if(tokenizer.hasMoreTokens()) {
-            line = tokenizer.nextToken("\n");
-        } else {
-            line = reader.readLine();
+    private int query(int x) {
+        int sum = 0;
+        for(; x > 0; x -= (x&(-x))) {
+            sum += BIT[x];
         }
-        return line;
+        return sum;
+    }
+
+    private int search(int k) {
+        int lo = 1, hi = n;
+
+        while(lo < hi) {
+            int mid = lo + (hi - lo) / 2;
+            int sum = query(mid);
+
+            if(sum >= k) {
+                hi = mid;
+            } else {
+                lo = mid + 1;
+            }
+        }
+
+        return lo;
+    }
+
+    public int fetch(int k) {
+        int idx = search(k);
+        int value = arr[idx];
+
+        n++;
+        arr[n] = value;
+        update(n, 1);
+        update(idx, -1);
+        return value;
+    }
+
+    public static void main(String [] args) {
+        MRUQueue queue = new MRUQueue(8);
+        System.out.println(queue.fetch(3));
+        System.out.println(queue.fetch(5));
+        System.out.println(queue.fetch(2));
+        System.out.println(queue.fetch(8));
     }
 }
