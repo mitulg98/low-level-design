@@ -1,69 +1,167 @@
 package org.example;
 
-class MRUQueue {
-    private static final int N = 4002;
-    private int [] BIT;
-    private int [] arr;
-    private int n;
+import java.io.*;
+import java.util.*;
 
-    public MRUQueue(int n) {
-        this.n = n;
-        BIT = new int[N];
-        arr = new int[N];
+public class Main {
+    public static void main(String[] args) throws IOException {
+        int x = 5;
+        System.out.println(Integer.toBinaryString(x));
+        int[] arr = new int[]{1, 2, 34};
+        List<Integer> list = Arrays.asList(1, 2, 3);
+    }
+}
 
-        for(int i = 0; i < n; i++) {
-            arr[i + 1] = i + 1;
-            update(i + 1, 1);
-        }
+class TrieNode {
+    TrieNode[] children;
+    boolean isEndOfWord;
+    public static int ALPHABET_SIZE = 26;
+
+    public TrieNode() {
+        isEndOfWord = false;
+        children = new TrieNode[ALPHABET_SIZE];
+    }
+}
+
+class Trie {
+    TrieNode root;
+    public Trie() {
+        root = new TrieNode();
     }
 
-    private void update(int x, int change) {
-        for(; x < N; x += (x&(-x))) {
-            BIT[x] += change;
+    public void insert(String word) {
+        TrieNode cur = root;
+
+        for(int i = 0; i < word.length(); i++) {
+            int idx = word.charAt(i) - 'a';
+            if(cur.children[idx] == null) {
+                cur.children[idx] = new TrieNode();
+            }
+            cur = cur.children[idx];
         }
+        cur.isEndOfWord = true;
     }
 
-    private int query(int x) {
-        int sum = 0;
-        for(; x > 0; x -= (x&(-x))) {
-            sum += BIT[x];
+    public boolean search(String word) {
+        TrieNode cur = root;
+
+        for(int i = 0; i < word.length(); i++) {
+            int idx = word.charAt(i) - 'a';
+            if(cur.children[idx] == null) {
+                return false;
+            }
+            cur = cur.children[idx];
         }
-        return sum;
+
+        return cur.isEndOfWord;
     }
 
-    private int search(int k) {
-        int lo = 1, hi = n;
+    public void delete(String word) {
+        deleteString(word, 0, root);
+    }
 
-        while(lo < hi) {
-            int mid = lo + (hi - lo) / 2;
-            int sum = query(mid);
+    public TrieNode deleteString(String word, int idx, TrieNode cur) {
+        if(cur == null) {
+            return cur;
+        }
 
-            if(sum >= k) {
-                hi = mid;
+        if(idx == word.length()) {
+            if(!cur.isEndOfWord) {
+                return cur;
             } else {
-                lo = mid + 1;
+                if(getNumberOfChildren(cur) == 0) {
+                    return null;
+                } else {
+                    return cur;
+                }
             }
         }
 
-        return lo;
+        int charIdx = word.charAt(idx) - 'a';
+
+        if(cur.children[charIdx] != null) {
+            cur.children[charIdx] = deleteString(word, idx + 1, cur.children[charIdx]);
+            if(getNumberOfChildren(cur) == 0 && !cur.isEndOfWord) {
+                return null;
+            } else {
+                return cur;
+            }
+        }
+
+        return cur;
     }
 
-    public int fetch(int k) {
-        int idx = search(k);
-        int value = arr[idx];
+    private int getNumberOfChildren(TrieNode cur) {
+        int count = 0;
+        for(int i = 0; i < TrieNode.ALPHABET_SIZE; i++) {
+            if(cur.children[i] != null) {
+                count++;
+            }
+        }
 
-        n++;
-        arr[n] = value;
-        update(n, 1);
-        update(idx, -1);
-        return value;
+        return count;
     }
 
-    public static void main(String [] args) {
-        MRUQueue queue = new MRUQueue(8);
-        System.out.println(queue.fetch(3));
-        System.out.println(queue.fetch(5));
-        System.out.println(queue.fetch(2));
-        System.out.println(queue.fetch(8));
+    public void printTrie() {
+        System.out.println("---- PRINTING TRIE ----");
+        print(root, new StringBuilder());
+    }
+
+    public void print(TrieNode cur, StringBuilder stringBuilder) {
+        if(cur == null) {
+            return;
+        }
+
+        if(cur.isEndOfWord) {
+            System.out.println(stringBuilder.toString());
+        }
+
+        for(int i = 0; i < TrieNode.ALPHABET_SIZE; i++) {
+            if(cur.children[i] != null) {
+                stringBuilder.append((char)('a' + i));
+                print(cur.children[i], stringBuilder);
+                stringBuilder.deleteCharAt(stringBuilder.length() - 1);
+            }
+        }
+    }
+}
+
+class Solver {
+    public static int solve() {
+        return 0;
+    }
+}
+
+class FastReader {
+    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private StringTokenizer tokenizer;
+
+    public String next() throws IOException {
+        if(Objects.isNull(tokenizer) || !tokenizer.hasMoreTokens()) {
+            tokenizer = new StringTokenizer(reader.readLine());
+        }
+        return tokenizer.nextToken();
+    }
+
+    public int nextInt() throws IOException {
+        return Integer.parseInt(next());
+    }
+
+    public long nextLong() throws IOException {
+        return Long.parseLong(next());
+    }
+
+    public double nextDouble() throws IOException {
+        return Double.parseDouble(next());
+    }
+
+    public String nextLine() throws IOException {
+        String line = "";
+        if(tokenizer.hasMoreTokens()) {
+            line = tokenizer.nextToken("\n");
+        } else {
+            line = reader.readLine();
+        }
+        return line;
     }
 }
